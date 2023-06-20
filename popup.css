@@ -13,3 +13,26 @@ body{
 	position: relative;
 	color: #333;
 }
+.overlay
+{
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	height:100vh;
+	background: rgba(0, 0, 0, 0.7);
+	text-align: center;
+	display:none;
+}
+#close
+{
+	position: absolute;
+	top:-20px;
+	left:-20px;
+	color:#fff;
+}
+#close:hover
+{
+	cursor: pointer;
+}

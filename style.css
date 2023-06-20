@@ -3,8 +3,8 @@
     position: absolute;
     top:500px;
     left:1100px;
-    background-color: greenyellow;
-    color:darkgreen;
+    background-color:cyan;
+    color:blue;
     border:none;
     border-radius: 20px;
     height:80px;
@@ -13,7 +13,41 @@
 }
 .button:hover
 {
-    background-color:green;
-    color:lawngreen;
-    transition: 0.6s;
+    background-color:blue;
+    color:cyan;
+    transition: 1s;
+}
+.popup
+{
+	width: 400px;
+	height: 500px;
+	background: white;
+	margin: 40px auto;
+	padding: 10px 20px;
+	position: relative;
+	left:200px;
+	color: #333;
+}
+.overlay
+{
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	height:100vh;
+	background: rgba(0, 0, 0, 0.7);
+	text-align: center;
+	display:none;
+}
+#close
+{
+	position: absolute;
+	top:-20px;
+	left:450px;
+	color:#fff;
+}
+#close:hover
+{
+	cursor: pointer;
 }

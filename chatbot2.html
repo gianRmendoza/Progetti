@@ -6,25 +6,27 @@
         <title>Chatbot</title>
     </head>
     <body bgcolor="darkcyan">
-        <button type ="button" class="button">CHATTA</button>
-        <div class="overlay" id="pop">
-            <div class="popup">
+        <div>
+            <div class="overlay" id="pop">
+                <div class="popup">
+                    <table align="center">
+                    <td><img src="chatbot_logo.png" alt="logo di chatbot" height="50" width="50"></td>
+                    <td><h1 style="text-align: center">CHATBOT</h1></td>
+                </table>
+                <h2 style="text-align: center">Chatta con un robot!</h2>
+                <hr style="height: 5px; background-color: darkcyan;">
                 <table align="center">
-                <td><img src="chatbot_logo.png" alt="logo di chatbot" height="50" width="50"></td>
-                <td><h1 style="text-align: center">CHATBOT</h1></td>
-            </table>
-            <h2 style="text-align: center">Chatta con un robot!</h2>
-            <hr style="height: 5px; background-color: darkcyan;">
-            <table align="center">
-                <td>
-                    <input type ="text"  height 40>
-                </td>
-                <td>
-                    <input type="button" value="INVIA">
-                </td>
-            </table>
-            <span id="close">X</span>
+                    <td>
+                        <input type ="text"  height 40>
+                    </td>
+                    <td>
+                        <input type="button" value="INVIA">
+                    </td>
+                </table>
+                <span id="close">X</span>
+                </div>
             </div>
+            <button type ="button" class="button" onclick="OpenPopUp()">CHATTA</button>
         </div>
         <script src="app.js"></script>
     </body>

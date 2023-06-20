@@ -2,6 +2,30 @@ body
 {
     background-color: darkcyan;
 }
+h1
+{
+    color: azure;
+    text-align: center;
+}
+h2
+{
+    color:azure;
+    text-align: center;
+}
+.popup h1
+{
+    color: black;
+    text-align: center;
+}
+.popup hr
+{
+    background-color:darkcyan;
+    height:5px;
+}
+.popup button
+{
+    border:none;
+}
 .button
 {
     position: absolute;
@@ -14,13 +38,13 @@ body
     height:80px;
     width: 80px;
     cursor: pointer;
-    transition: all 1s;
+    transition: all 0.8s;
 }
 .button:hover
 {
     background-color:blue;
     color:cyan;
-    transition: 1s;
+    transition: 0.8s;
 }
 .popup
 {

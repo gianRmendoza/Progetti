@@ -12,7 +12,7 @@ h2
     color:azure;
     text-align: center;
 }
-.popup h1
+.popup h2
 {
     color: black;
     text-align: center;
@@ -50,12 +50,13 @@ h2
 {
 	width: 400px;
 	height: 500px;
-	background: white;
+	background-color: lightcyan;
 	margin: 40px auto;
 	padding: 10px 20px;
 	position: relative;
 	left:200px;
 	color: #333;
+    border-radius: 20px;
 }
 .overlay
 {

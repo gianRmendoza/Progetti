@@ -13,23 +13,23 @@
                     <hr>
                     <table align="center">
                         <td><img src="chatbot_logo.png" alt="logo di chatbot" height="50" width="50"></td>
-                        <td><h1><font face="Ravie">CHATBOT</font></h1></td>
+                        <td><h2><font face="Ravie">CHATBOT</font></h2></td>
                     </table>
                         <hr>
                         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                     <table align="center">
                         <hr style="height: 2px; background-color: black;">
                         <td>
-                            <input type ="text">
+                            <input type ="text" id="Testo" maxlength="3000">
                         </td>
                         <td>
-                            <input type="button" value="INVIA">
+                            <input type="submit" value="INVIA" onclick="sendMessage()">
                         </td>
                     </table>
                     <span id="close">X</span>
                 </div>
             </div>
-            <button type ="button" class="button" onclick="OpenPopUp()">
+            <button type ="button" class="button" onclick="openPopUp()">
             <font face="Verdana"><b>CHATTA</b></font>
             </button>
         </div>

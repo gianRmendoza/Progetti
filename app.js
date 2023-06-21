@@ -7,6 +7,7 @@ document.getElementById("close").onclick = function(e)
 {
     document.getElementById('pop').style.display="none";
 }
+
 function sendMessage(){
     // Inserisco il testo dentro una variabile
     var testo = document.getElementById("Testo").value;
@@ -22,13 +23,13 @@ function sendMessage(){
 
     //Chiama una funzione che restituisce un messaggio di attesa
     loadingMessage()
-    //Chiamare una nuova funzione da creare che restituisce un messaggio che andrà in messageTo
+
+    //Chiamare una nuova funzione da creare che restituisce un messaggio dopo 2 secondi che andrà in messageTo
     setTimeout(
         function() {
             console.log("run");
             receiveMessage();
            }, 2000);
-    
 }
 
 function receiveMessage()

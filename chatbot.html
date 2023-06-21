@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ChatBot</title>
+        <link rel="stylesheet" href="style.css">
+        <title>Chatbot</title>
     </head>
     <body>
-        <div class="content">
-            <table align="center">
-                <td><img src="chatbot_logo.png" alt="logo di chatbot" height="50" width="50"></td>
-                <td><h1 style="text-align: center">CHATBOT</h1></td>
-            </table>
-            <h2 style="text-align: center">Chatta con un robot!</h2>
-            <hr style="height: 5px; background-color: darkcyan;">
-            <div style="position: absolute; top:500px; left:530px;">   
-                <table>
-                    <hr>
-                    <td>
-                        <input type="text" height="40">
-                    </td>
-                    <td>
-                        <input type="button" value="INVIA">
-                    </td>
-                </table>
-            </div>    
+        <div class ="content">
+            <h1><font face="Ravie">CHATBOT</font></h1>
+            <h2>Inizia a chattare con un bot!</h2>
+            <div class="overlay" id="pop">
+                <div class="popup">
+                    <div class="chat-title">
+                        <table>
+                            <td><img src="chatbot_logo.png" alt="logo di chatbot" height="50" width="50"></td>
+                            <td><h2>CHATBOT</h2></td>
+                        </table>
+                    </div>
+                        <hr>
+                        <div id="chatContent">
+                        </div>
+                    <div class="message-box">
+                            <textarea ="text" id="Testo" placeholder="Scrivi..."></textarea>
+                            <button type="submit" onclick="sendMessage()">INVIA</button>
+                    </div>
+                    <span id="close">X</span>
+                </div>
+            </div>
+            <button type ="button" class="button" onclick="openPopUp()">
+            <font face="Verdana"><b>CHATTA</b></font>
+            </button>
         </div>
+        <script src="app.js"></script>
     </body>
 </html>

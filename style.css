@@ -38,10 +38,10 @@ text
     position: absolute;
     top:500px;
     left:1100px;
-    background-color:cyan;
-    color:blue;
+    background-color:aquamarine;
+    color:white;
     border:none;
-    border-radius: 20px;
+    border-radius: 100px;
     height:80px;
     width: 80px;
     cursor: pointer;
@@ -49,8 +49,8 @@ text
 }
 .button:hover
 {
-    background-color:blue;
-    color:cyan;
+    background-color:aqua;
+    color:white;
     transition: 0.8s;
 }
 .popup
@@ -60,7 +60,7 @@ text
 	background-color: lightcyan;
 	margin: 40px auto;
 	position: relative;
-	left:200px;
+	left:300px;
 	color: #333;
     border-radius: 35px;
 }
@@ -79,12 +79,16 @@ text
 #close
 {
 	position: absolute;
-	top:10px;
-	left:275px;
+	top:-10px;
+	left:300px;
 	color:black;
     font-family:Arial, Helvetica, sans-serif;   
+    background-color: lightcyan;
+    padding: 3px;
+    border-radius: 30px;
+
 }
-#closa:hover
+#close:hover
 {
     cursor: pointer;    
 }
@@ -134,8 +138,7 @@ text
     color: #fff;
     text-transform: uppercase;
     text-align: left;
-    padding: 10px 10px 10px 50px;
-    height: 32px;
+    padding: 10px 10px 10px 20px;
     border-bottom-left-radius: 33px;
     border-bottom-right-radius: 33px;
 }
@@ -145,12 +148,11 @@ text
     border: none;
     outline: none !important;
     resize: none;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgb(255, 255, 255);
     font-size: 15px;
-    height: 20px;
     margin: 0;
     padding-right: 20px;
-    width: 265px;
+    width: 200px;
 }
 .message-box button
 {
@@ -181,11 +183,18 @@ text
     color: #fff;
     text-transform: uppercase;
     text-align: left;
-    padding: 10px 10px 10px 50px;
+    padding: 10px 10px 10px 10px;
     border-top-left-radius: 33px;
     border-top-right-radius: 33px;
   }
   .chat-title h2
   {
-    font-size: 20px;
+    font-size: 15px;
+    font-family: sans-serif;
+  }
+  .popup img
+  {
+    border-radius:30px;
+    height: 30px;
+    width: 30px;
   }

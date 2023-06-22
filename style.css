@@ -95,7 +95,7 @@ text
     height: 345px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     overflow:hidden;
     overflow-y: scroll;
     padding: 15px;

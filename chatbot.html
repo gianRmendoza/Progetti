@@ -15,14 +15,15 @@
                             <td><img src="chatbot_logo.png" alt="logo di chatbot" height="50" width="50"></td>
                             <td><h2>CHATBOT</h2></td>
                         </table>
-                    </div>
+                        <span id="close">x</span>
+                    </div>  
                         <div id="chatContent">
                         </div>
                     <div class="message-box">
                             <textarea ="text" id="Testo" placeholder="Type..."></textarea>
-                            <button type="submit" onclick="sendMessage()">SEND</button>
+                            <button type="submit" id="submit" onclick="sendMessage()">SEND</button>
                     </div>
-                    <span id="close">x</span>
+                    
                 </div>
             </div>
             <button type ="button" class="button" onclick="openPopUp()">

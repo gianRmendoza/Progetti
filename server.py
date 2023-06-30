@@ -35,14 +35,14 @@ def answer_question():
 
     if  question == "":
         return jsonify({'error': "The provided question has no value"}), 400
-
+    
     answer = chatbot_answer_question(question)
     return jsonify({'answer': answer}), 200
 
-#restituisce la risposta alla domanda    
+#restituisce la risposta della domanda    
 def chatbot_answer_question(question: str) -> str:
     data = question
-    result = 'Hi ' + data + 'How can I help you?'
+    result = "Hi " + data + "How can I help you?"
     return result
 
 if __name__ == '__main__':

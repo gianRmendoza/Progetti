@@ -21,6 +21,8 @@ function sendMessage(){
     document.getElementById("chatContent").appendChild(newElement); //inserisce il "figlio"(newElement) all'interno della "madre"(chat)
 
     // svuoto il campo di testo
+    var value = document.getElementById("Testo").value;
+    console.log("value", value);
     document.getElementById("Testo").value="";
 
     //Chiama una funzione che restituisce un messaggio di attesa
@@ -30,10 +32,27 @@ function sendMessage(){
             loadingMessage();
            }, 500);
     //Chiamare una nuova funzione da creare che restituisce un messaggio dopo 2 secondi che andrà in messageTo
+    //Chiama il backend e manda gli la domanda(question) e restituisce una risposta (es: fake answer)
     setTimeout(
         function() {
             console.log("run");
-            receiveMessage();
+            $.ajax({
+                url: 'http://localhost:4242/answer-question',
+                type: 'POST',
+                data: JSON.stringify({'question': value}),
+                contentType: "application/json; charset=utf-8",
+                success: function(response) {
+                    console.log(response)
+                    var newElement = document.createElement('div');
+                    newElement.innerText = response.answer;
+                    newElement.classList.add("message", "messageTo");
+                    document.getElementById("chatContent").appendChild(newElement),
+                scrollToEnd(); 
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
             document.getElementById("loading").remove();
            }, 2000);
            scrollToEnd()

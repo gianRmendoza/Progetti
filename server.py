@@ -1,5 +1,6 @@
 import json
 import os
+import requests
 
 from flask import Flask, jsonify, render_template, request
 
@@ -35,18 +36,36 @@ def answer_question():
 
     if  question == "":
         return jsonify({'error': "The provided question has no value"}), 400
-    
-    answer = chatbot_answer_question(question)
+        
+    answer = query(question)
     return jsonify({'answer': answer}), 200
 
-#restituisce la risposta della domanda    
+#restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:
     li = list(question.split(" "))
     if len(li) == 1:
         return "Hi " + question + "How can I help you?"
     else:
         return "Hey!"
+
+API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
+headers = {'Authorization': 'Bearer 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', "Content-Type": "application/json"}
+
+
+def query(question):
+    data = json.dumps({"inputs": question})
+    response = requests.request("POST", API_URL, headers=headers, data=data)
+    decoded_response = json.loads(response.content.decode("utf-8"))
     
+    try:
+        answer = decoded_response[0]['generated_text']
+        answer = answer.split("/n")[-1]
+    except (Exception, ):
+        answer = "I do not know." 
+    
+    return answer
+
+
 
 if __name__ == '__main__':
     app.run(port=4242, debug=True)  

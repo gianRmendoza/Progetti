@@ -36,10 +36,12 @@ function sendMessage(){
     setTimeout(
         function() {
             console.log("run");
+            data = JSON.stringify({'question': value})
+            console.log("data", data)
             $.ajax({
                 url: 'http://localhost:4242/answer-question',
                 type: 'POST',
-                data: JSON.stringify({'question': value}),
+                data: data,
                 contentType: "application/json; charset=utf-8",
                 success: function(response) {
                     console.log(response)

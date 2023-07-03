@@ -41,9 +41,12 @@ def answer_question():
 
 #restituisce la risposta della domanda    
 def chatbot_answer_question(question: str) -> str:
-    data = question
-    result = "Hi " + data + "How can I help you?"
-    return result
+    li = list(question.split(" "))
+    if len(li) == 1:
+        return "Hi " + question + "How can I help you?"
+    else:
+        return "Hey!"
+    
 
 if __name__ == '__main__':
     app.run(port=4242, debug=True)  

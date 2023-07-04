@@ -3,6 +3,7 @@ import os
 import requests
 
 from flask import Flask, jsonify, render_template, request
+from flask_cors import CORS
 
 static_dir = str(os.path.abspath(os.path.join(__file__, "..", "static")))
 
@@ -10,6 +11,7 @@ app = Flask(__name__,
             static_folder=static_dir,
             static_url_path="",
             template_folder=static_dir)
+CORS(app)
 
 print(static_dir)
 
@@ -59,10 +61,11 @@ def query(question):
     
     try:
         answer = decoded_response[0]['generated_text']
-        answer = answer.split("/n")[-1]
+        answer = answer.split(question)[-1]
     except (Exception, ):
         answer = "I do not know." 
-    
+    answer = answer.split(question)
+
     return answer
 
 

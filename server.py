@@ -4,6 +4,9 @@ import requests
 
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
+from dotenv  import load_dotenv
+
+load_dotenv()
 
 static_dir = str(os.path.abspath(os.path.join(__file__, "..", "static")))
 
@@ -50,8 +53,10 @@ def chatbot_answer_question(question: str) -> str:
     else:
         return "Hey!"
 
+API_PASS = os.getenv("API_PASS")
+
 API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
-headers = {'Authorization': 'Bearer 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', "Content-Type": "application/json"}
+headers = {'Authorization': f'Bearer {API_PASS}', "Content-Type": "application/json"}
 
 
 def query(question):

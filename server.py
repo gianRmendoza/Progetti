@@ -22,8 +22,8 @@ print(static_dir)
 def index():
     return render_template('chatbot.html')
 
-#controlla la question col try catch e chiama l'istruzione chatbot_answer_question(question)
-#per restituire la risposta
+#controlla la question col try catch e chiama l'istruzione query(question) per
+#restituire la risposta
 @app.route('/answer-question', methods=['POST'])
 def answer_question():
     try:
@@ -38,9 +38,6 @@ def answer_question():
 
     if type(question) is not str:
         return jsonify({'error': "The provided question is not a String"}), 400
-
-    if  question == "":
-        return jsonify({'error': "The provided question has no value"}), 400
         
     answer = query(question)
     return jsonify({'answer': answer}), 200
@@ -53,12 +50,13 @@ def chatbot_answer_question(question: str) -> str:
     else:
         return "Hey!"
 
+#crea un collegamento per passare la password dell'API
 API_PASS = os.getenv("API_PASS")
 
 API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct"
 headers = {'Authorization': f'Bearer {API_PASS}', "Content-Type": "application/json"}
 
-
+#il bot restituisce la risposta della domanda
 def query(question):
     data = json.dumps({"inputs": question})
     response = requests.request("POST", API_URL, headers=headers, data=data)

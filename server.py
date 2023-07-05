@@ -18,7 +18,7 @@ CORS(app)
 
 print(static_dir)
 
-#dopo aver digitato il sito http mostra html, cioè l'interfaccia(frontend)
+#dopo aver digitato il http... mostra l'html, cioè l'interfaccia(frontend)
 @app.route('/', methods=['GET'])
 def index():
     return render_template('chatbot.html')

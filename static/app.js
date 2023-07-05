@@ -77,11 +77,12 @@ function loadingMessage()
     document.getElementById("chatContent").appendChild(newElement3);
     scrollToEnd()
 }
+//la barra di scorrimento(scroll bar) rimane sempre giù
 function scrollToEnd(){
 	let chatList = document.getElementById("chatContent");
 	chatList.scrollTop = chatList.scrollHeight;
 }
-
+//attiva il tasto invio della tastiera per inviare il messaggio
 document.getElementById("Testo")
     .addEventListener("keyup", function(e) {
         if (e.keyCode === 13) {

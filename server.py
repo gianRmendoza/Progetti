@@ -76,8 +76,8 @@ def query(question):
         answer = "I do not know." 
     answer = answer.split(question)
     theAnswer ={"the answer":answer}
-    rec_id1 = collection.insert_one(theAnswer)
-    print(rec_id1)
+    rec_id = collection.insert_one(theAnswer)
+    print(rec_id)
     cursor = collection.find()
     for record in cursor:
         print(record)

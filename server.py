@@ -13,6 +13,7 @@ load_dotenv()
 connessione = MongoClient()
 db = connessione.chatbotDB
 collection = db.answers
+answer2 = []
 
 static_dir = str(os.path.abspath(os.path.join(__file__, "..", "static")))
 
@@ -75,7 +76,9 @@ def query(question):
     except (Exception, ):
         answer = "I do not know." 
     answer = answer.split(question)
-    theAnswer ={"the answer":answer}
+    for i in range(len(answer)):
+        answer2.append(answer[i])
+    theAnswer ={"the answer":answer2}
     rec_id = collection.insert_one(theAnswer)
     print(rec_id)
     cursor = collection.find()

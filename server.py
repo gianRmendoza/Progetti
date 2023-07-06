@@ -1,12 +1,18 @@
 import json
 import os
 import requests
+import pymongo
 
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from dotenv import load_dotenv
+from pymongo import MongoClient
 
 load_dotenv()
+
+connessione = MongoClient()
+db = connessione.chatbotDB
+collection = db.answers
 
 static_dir = str(os.path.abspath(os.path.join(__file__, "..", "static")))
 
@@ -69,6 +75,12 @@ def query(question):
     except (Exception, ):
         answer = "I do not know." 
     answer = answer.split(question)
+    theAnswer ={"the answer":answer}
+    rec_id1 = collection.insert_one(theAnswer)
+    print(rec_id1)
+    cursor = collection.find()
+    for record in cursor:
+        print(record)
 
     return answer
 

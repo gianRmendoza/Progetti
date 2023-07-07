@@ -9,6 +9,44 @@ document.getElementById("close").onclick = function(e)
     document.getElementById('pop').style.display="none";
 }
 
+window.onload = function()
+{
+    const array = []
+    for (const element of array)
+    {
+        let newElement = document.createElement('div');
+        newElement.innerText = element.document.getElementById("Testo").value;
+        newElement.classList.add("message", "messageFrom");
+        document.getElementById("chatContent").appendChild(newElement);
+    }
+
+    // fetch('http://localhost:4242/saved-chat').then(response=>{
+    //     console.log(response)
+    //     return response.json()
+    // }).then(response=>{
+    //     console.log(response)})
+
+    $.ajax({
+        url: 'http://localhost:4242/saved-chat',
+        type: 'GET',
+        //contentType: "application/json; charset=utf-8",
+        success: function(response) {
+            console.log(response)
+            for(response.answers_list of response.answers_list)
+            {
+                let newElement = document.createElement('div');
+                newElement.innerText = response.answers_list;
+                newElement.classList.add("message", "messageTo");
+                document.getElementById("chatContent").appendChild(newElement);
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+    scrollToEnd();
+}
+
 function sendMessage(){
     document.getElementById("Testo").focus();
     // Inserisco il testo dentro una variabile

@@ -2,6 +2,7 @@ function openPopUp(pop)
 {
     document.getElementById('pop').style.display="block";
     document.getElementById("Testo").focus();
+    scrollToEnd();
 }
 
 document.getElementById("close").onclick = function(e)
@@ -44,7 +45,6 @@ window.onload = function()
             console.log(error);
         }
     });
-    scrollToEnd();
 }
 
 function sendMessage(){

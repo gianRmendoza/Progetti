@@ -13,7 +13,6 @@ load_dotenv()
 connessione = MongoClient()
 db = connessione.chatbotDB
 collection = db.answers
-answer2 = []
 
 static_dir = str(os.path.abspath(os.path.join(__file__, "..", "static")))
 
@@ -50,6 +49,20 @@ def answer_question():
     answer = query(question)
     return jsonify({'answer': answer}), 200
 
+@app.route('/saved-chat', methods=['GET'])
+def load_answers():
+    answers = collection.find()
+    lista = []
+    answers_list = []
+
+    for row in answers:
+        lista.append(list(row['the answer']))
+    
+    for i in range(len(lista)):
+        answers_list.append(lista[i])
+
+    return jsonify({'answers_list': answers_list}), 200
+
 #restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:
     li = list(question.split(" "))
@@ -76,9 +89,7 @@ def query(question):
     except (Exception, ):
         answer = "I do not know." 
     answer = answer.split(question)
-    for i in range(len(answer)):
-        answer2.append(answer[i])
-    theAnswer ={"the answer":answer2}
+    theAnswer ={"the answer":answer}
     rec_id = collection.insert_one(theAnswer)
     print(rec_id)
     cursor = collection.find()

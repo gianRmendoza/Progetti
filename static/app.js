@@ -12,17 +12,17 @@ document.getElementById("close").onclick = function(e)
 
 window.onload = function()
 {
-    let array = [];
-    // var element = localStorage.getItem("text");
-    // array.push(element);
-    // console.log(array);
-    for (element of array)
-    {
-        let newElement = document.createElement('div');
-        newElement.innerText = element;
-        newElement.classList.add("message", "messageFrom");
-        document.getElementById("chatContent").appendChild(newElement);
-    }
+    // let array = [];
+    // // var element = localStorage.getItem("text");
+    // // array.push(element);
+    // // console.log(array);
+    // for (element of array)
+    // {
+    //     let newElement = document.createElement('div');
+    //     newElement.innerText = element;
+    //     newElement.classList.add("message", "messageFrom");
+    //     document.getElementById("chatContent").appendChild(newElement);
+    // }
 
     // fetch('http://localhost:4242/saved-chat').then(response=>{
     //     console.log(response)
@@ -41,6 +41,13 @@ window.onload = function()
                 let newElement = document.createElement('div');
                 newElement.innerText = response.answers_list;
                 newElement.classList.add("message", "messageTo");
+                document.getElementById("chatContent").appendChild(newElement);
+            }
+            for(response.questions_list of response.questions_list)
+            {
+                let newElement = document.createElement('div');
+                newElement.innerText = response.questions_list;
+                newElement.classList.add("message", "messageFrom");
                 document.getElementById("chatContent").appendChild(newElement);
             }
         },
@@ -81,12 +88,15 @@ function sendMessage(){
     setTimeout(
         function() {
             console.log("run");
-            data = JSON.stringify({'question': value})
+            const data = {
+                date,
+                question:value
+            }
             console.log("data", data)
             $.ajax({
                 url: 'http://localhost:4242/answer-question',
                 type: 'POST',
-                data: data,
+                data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
                 success: function(response) {
                     console.log(response)

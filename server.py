@@ -7,12 +7,12 @@ from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 from pymongo import MongoClient
+from datetime import datetime
 
 load_dotenv()
 
 connessione = MongoClient()
 db = connessione.chatbotDB
-collection = db.answers
 
 static_dir = str(os.path.abspath(os.path.join(__file__, "..", "static")))
 
@@ -48,8 +48,8 @@ def answer_question():
         
     answer = query(question)
 
-    Question = "".join(map(str,question))
-    theQuestion ={"the question":Question}
+    collection = db.questions
+    theQuestion ={"the question":question}
     rec_id = collection.insert_one(theQuestion)
     print(rec_id)
     cursor = collection.find()
@@ -59,21 +59,29 @@ def answer_question():
     return jsonify({'answer': answer}), 200
 
 @app.route('/saved-chat', methods=['GET'])
-def load_answers():
-    answers = collection.find()
+def load_chat():
     lista = []
     answers_list = []
     lista2 = []
-    question_list = []
+    questions_list = []
 
-    for row in answers:
-        if row == ['the answer']:
-            lista.append(list(row['the answer']))
+    #prende le risposte
+    for row in db.answers.find():
+        lista.append(list(row['the answer']))
     
     for i in range(len(lista)):
         answers_list.append(lista[i])
+        print(answers_list)
 
-    return jsonify({'answers_list': answers_list, 'question_list': question_list }), 200
+    #prende le domande
+    for row in db.questions.find():
+            lista2.append(list(row['the question']))
+
+    for i in range(len(lista2)):
+        questions_list.append(lista2[i])
+        print(questions_list)
+
+    return jsonify({'answers_list': answers_list, 'questions_list': questions_list }), 200
 
 #restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:
@@ -101,15 +109,20 @@ def query(question):
     except (Exception, ):
         answer = "I do not know." 
     answer = answer.split(question)
-    Answer = "".join(map(str,answer))
 
-    theAnswer ={"the answer":Answer}
     
+    date = datetime.now()
+    iso_date = date.isoformat()
+
+    collection = db.answers
+    theAnswer ={"the answer":answer, "date":iso_date}
     rec_id = collection.insert_one(theAnswer)
     print(rec_id)
     cursor = collection.find()
     for record in cursor:
         print(record)
+    
+
 
     return answer
 

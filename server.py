@@ -49,7 +49,8 @@ def answer_question():
     answer = query(question)
 
     collection = db.questions
-    theQuestion ={"the question":question}
+    Question = list(question.split("/n"))
+    theQuestion ={"the question":Question}
     rec_id = collection.insert_one(theQuestion)
     print(rec_id)
     cursor = collection.find()

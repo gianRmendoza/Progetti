@@ -47,6 +47,15 @@ def answer_question():
         return jsonify({'error': "The provided question is not a String"}), 400
         
     answer = query(question)
+
+    Question = "".join(map(str,question))
+    theQuestion ={"the question":Question}
+    rec_id = collection.insert_one(theQuestion)
+    print(rec_id)
+    cursor = collection.find()
+    for record in cursor:
+        print(record)
+
     return jsonify({'answer': answer}), 200
 
 @app.route('/saved-chat', methods=['GET'])
@@ -54,14 +63,17 @@ def load_answers():
     answers = collection.find()
     lista = []
     answers_list = []
+    lista2 = []
+    question_list = []
 
     for row in answers:
-        lista.append(list(row['the answer']))
+        if row == ['the answer']:
+            lista.append(list(row['the answer']))
     
     for i in range(len(lista)):
         answers_list.append(lista[i])
 
-    return jsonify({'answers_list': answers_list}), 200
+    return jsonify({'answers_list': answers_list, 'question_list': question_list }), 200
 
 #restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:
@@ -89,7 +101,10 @@ def query(question):
     except (Exception, ):
         answer = "I do not know." 
     answer = answer.split(question)
-    theAnswer ={"the answer":answer}
+    Answer = "".join(map(str,answer))
+
+    theAnswer ={"the answer":Answer}
+    
     rec_id = collection.insert_one(theAnswer)
     print(rec_id)
     cursor = collection.find()

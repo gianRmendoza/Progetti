@@ -36,18 +36,31 @@ window.onload = function()
         //contentType: "application/json; charset=utf-8",
         success: function(response) {
             console.log(response)
-            for(response.answers_list of response.answers_list)
+            const messages =[...response.answers_list.map((message)=>{
+                return {
+                    message,type:"answer"
+                }
+            }),...response.questions_list.map((message)=>{
+                return {
+                    message,type:"question"
+                }
+            })]
+            messages.sort((a,b)=>{
+                return a.date>b.date
+            })
+            console.log(messages)
+            for(const m of messages)
             {
+                const {message,type} = m
                 let newElement = document.createElement('div');
-                newElement.innerText = response.answers_list;
-                newElement.classList.add("message", "messageTo");
-                document.getElementById("chatContent").appendChild(newElement);
-            }
-            for(response.questions_list of response.questions_list)
-            {
-                let newElement = document.createElement('div');
-                newElement.innerText = response.questions_list;
-                newElement.classList.add("message", "messageFrom");
+                newElement.innerText = message;
+                if(type === "question"){
+                    newElement.classList.add("message", "messageFrom");
+                }
+                else
+                {
+                    newElement.classList.add("message", "messageTo");
+                }
                 document.getElementById("chatContent").appendChild(newElement);
             }
         },

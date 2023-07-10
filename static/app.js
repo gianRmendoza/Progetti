@@ -12,11 +12,14 @@ document.getElementById("close").onclick = function(e)
 
 window.onload = function()
 {
-    const array = []
-    for (const element of array)
+    let array = [];
+    // var element = localStorage.getItem("text");
+    // array.push(element);
+    // console.log(array);
+    for (element of array)
     {
         let newElement = document.createElement('div');
-        newElement.innerText = element.document.getElementById("Testo").value;
+        newElement.innerText = element;
         newElement.classList.add("message", "messageFrom");
         document.getElementById("chatContent").appendChild(newElement);
     }
@@ -51,6 +54,10 @@ function sendMessage(){
     document.getElementById("Testo").focus();
     // Inserisco il testo dentro una variabile
     let testo = document.getElementById("Testo").value;
+    //localStorage.setItem("text", testo);
+
+    const date = new Date();
+    date.toISOString();
 
     // Creo un elemento html, aggiungo dentro il testo, aggiungo le classi e stampo l'elemnto dentro il contenitore
     let newElement = document.createElement('div');

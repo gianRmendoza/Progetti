@@ -92,7 +92,7 @@ function sendMessage() {
   setTimeout(function () {
     console.log("run");
     const data = {
-      question: value,
+      question: value
     };
     console.log("data", data);
     $.ajax({
@@ -143,3 +143,48 @@ document.getElementById("Testo").addEventListener("keyup", function (e) {
     document.getElementById("submit").click();
   }
 });
+
+//LOGIN
+function login(){
+    const user = document.getElementById("user").value;
+    const pass = document.getElementById("password").value;
+
+    const userData = {
+        user:user,
+        password:pass
+      };
+      console.log("userData", userData);
+      fetch("http://localhost:4242/user-login",{
+        body:JSON.stringify(userData),
+        "Content-Type":"application/json; charset=utf-8",
+        method:"POST"
+      }).then(response =>response.json()).then(()=>{
+        console.log(response)
+        if(user != "" && pass != "")
+      {
+          console.log("ciao")
+          window.location.replace('/chatbot.html')
+      }}).catch(function (error) {
+        console.log(error);
+      })
+
+    //   $.ajax({
+    //     url: "http://localhost:4242/user-login",
+    //     type: "POST",
+    //     data: JSON.stringify(userData),
+    //     contentType: "application/json; charset=utf-8",
+    //     success: function (response) {
+    //       console.log(response);
+    //       if(user != "" && pass != "")
+    //     {
+    //         console.log("ciao")
+    //         window.location.replace('/chatbot.html')
+    //     }
+    //     },
+    //     error: function (error) {
+    //       console.log(error);
+    //     },
+    //   });
+    
+    
+}

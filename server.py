@@ -27,7 +27,7 @@ print(static_dir)
 #dopo aver digitato l'http... mostra l'html, cioè l'interfaccia(frontend)
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('chatbot.html')
+    return render_template('login.html')
 
 #controlla la question col try catch e chiama l'istruzione query(question) per
 #restituire la risposta
@@ -85,6 +85,26 @@ def load_chat():
         print(questions_list)
 
     return jsonify({'answers_list': answers_list, 'questions_list': questions_list }), 200
+
+@app.route('/user-login', methods=['POST'])
+def user_login():
+    try:
+        req_data = json.loads(request.data)
+    except:
+        return jsonify({'error': "The provided input is not a JSON"}), 400
+
+    user = req_data["user"]
+    password = req_data["password"]
+    collection = db.users
+
+    theUser = {"nome utente":user, "password":password}
+    rec_id = collection.insert_one(theUser)
+    print(rec_id)
+    cursor = collection.find()
+    for record in cursor:
+        print(record)
+
+    return jsonify({'user': user}), 200
 
 #restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:

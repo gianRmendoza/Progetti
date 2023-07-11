@@ -278,3 +278,7 @@ text
     height: 30px;
     width: 30px;
   }
+  .login p{
+    font-size: 20px;
+    color: azure
+  }

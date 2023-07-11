@@ -46,11 +46,13 @@ def answer_question():
     if type(question) is not str:
         return jsonify({'error': "The provided question is not a String"}), 400
         
+    iso_date = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    
     answer = query(question)
 
     collection = db.questions
     Question = list(question.split("/n"))
-    theQuestion ={"the question":Question}
+    theQuestion ={"the question":Question, "date":iso_date}
     rec_id = collection.insert_one(theQuestion)
     print(rec_id)
     cursor = collection.find()
@@ -68,15 +70,15 @@ def load_chat():
 
     #prende le risposte
     for row in db.answers.find():
-        lista.append(list(row['the answer']))
-    
+        lista.append({'message':row['the answer'], 'date':row['date'], 'type':'answer'})
+    print(lista)
     for i in range(len(lista)):
         answers_list.append(lista[i])
         print(answers_list)
 
     #prende le domande
     for row in db.questions.find():
-            lista2.append(list(row['the question']))
+        lista2.append({'message':row['the question'], 'date':row['date'],'type':'question'})
 
     for i in range(len(lista2)):
         questions_list.append(lista2[i])
@@ -112,11 +114,9 @@ def query(question):
     answer = answer.split(question)
 
     
-    date = datetime.now()
-    iso_date = date.isoformat()
 
     collection = db.answers
-    theAnswer ={"the answer":answer, "date":iso_date}
+    theAnswer ={"the answer":answer, "date":datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")}
     rec_id = collection.insert_one(theAnswer)
     print(rec_id)
     cursor = collection.find()

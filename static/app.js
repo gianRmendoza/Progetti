@@ -163,7 +163,6 @@ function login(){
         // console.log(response)
         if(user != "" && pass != "")
       {
-          console.log("ciao")
           window.location.replace('/chatbot.html')
       }}).catch(function (error) {
         console.log(error);

@@ -96,14 +96,15 @@ def user_login():
     user = req_data["user"]
     password = req_data["password"]
     collection = db.users
-
-    theUser = {"nome utente":user, "password":password}
-    rec_id = collection.insert_one(theUser)
-    print(rec_id)
-    cursor = collection.find()
-    for record in cursor:
-        print(record)
-
+    
+    if user != "" and password != "":
+        theUser = {"nome utente":user, "password":password}
+        rec_id = collection.insert_one(theUser)
+        print(rec_id)
+        cursor = collection.find()
+        for record in cursor:
+            print(record)
+    
     return jsonify({'user': user}), 200
 
 #restituisce la risposta della domanda
@@ -133,8 +134,6 @@ def query(question):
         answer = "I do not know." 
     answer = answer.split(question)
 
-    
-
     collection = db.answers
     theAnswer ={"the answer":answer, "date":datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")}
     rec_id = collection.insert_one(theAnswer)
@@ -143,10 +142,7 @@ def query(question):
     for record in cursor:
         print(record)
     
-
-
     return answer
-
 
 
 if __name__ == '__main__':

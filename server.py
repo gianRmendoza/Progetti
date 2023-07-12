@@ -95,17 +95,19 @@ def user_login():
 
     user = req_data["user"]
     password = req_data["password"]
+    _id = req_data["id"]
+    
     collection = db.users
     
     if user != "" and password != "":
-        theUser = {"nome utente":user, "password":password}
+        theUser = {"_id":_id,"nome utente":user, "password":password}
         rec_id = collection.insert_one(theUser)
         print(rec_id)
         cursor = collection.find()
         for record in cursor:
             print(record)
     
-    return jsonify({'user': user}), 200
+    return jsonify({'_id': _id}), 200
 
 #restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:

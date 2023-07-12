@@ -68,8 +68,8 @@ function sendMessage() {
   let testo = document.getElementById("Testo").value;
   //localStorage.setItem("text", testo);
 
-  const date = new Date();
-  date.toISOString();
+  // const date = new Date();
+  // date.toISOString();
 
   // Creo un elemento html, aggiungo dentro il testo, aggiungo le classi e stampo l'elemnto dentro il contenitore
   let newElement = document.createElement("div");
@@ -149,7 +149,8 @@ function login(){
     const user = document.getElementById("user").value;
     const pass = document.getElementById("password").value;
 
-    const userData = {
+    const userData = {        
+        id:(Math.random() + 1).toString(36).substring(5),
         user:user,
         password:pass
       };

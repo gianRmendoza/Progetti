@@ -279,6 +279,17 @@ text
     width: 30px;
   }
   .login p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
     color: azure
+  }
+  .login{
+    text-align: center;
+  }
+  .login input{
+    height: 20px;
+    width: 200px
+  }
+  .login button{
+    width: 100px;
   }

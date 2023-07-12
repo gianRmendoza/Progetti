@@ -52,7 +52,11 @@ def answer_question():
 
     collection = db.questions
     Question = list(question.split("/n"))
-    theQuestion ={"the question":Question, "date":iso_date}
+
+    for x in db.users.find():
+        _id = x['_id']
+
+    theQuestion ={"_id":_id,"the question":Question, "date":iso_date}
     rec_id = collection.insert_one(theQuestion)
     print(rec_id)
     cursor = collection.find()
@@ -137,7 +141,11 @@ def query(question):
     answer = answer.split(question)
 
     collection = db.answers
-    theAnswer ={"the answer":answer, "date":datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")}
+
+    for x in db.users.find():
+        _id = x['_id']
+    
+    theAnswer ={"_id":_id,"the answer":answer, "date":datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")}
     rec_id = collection.insert_one(theAnswer)
     print(rec_id)
     cursor = collection.find()

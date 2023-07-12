@@ -102,7 +102,6 @@ def user_login():
     user = req_data["user"]
     password = req_data["password"]
     _id = req_data["id"]
-    usersList = []
 
     collection = db.users
     

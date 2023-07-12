@@ -54,9 +54,9 @@ def answer_question():
     Question = list(question.split("/n"))
 
     for x in db.users.find():
-        _id = x['_id']
-
-    theQuestion ={"_id":_id,"the question":Question, "date":iso_date}
+        userId = x['_id']
+    
+    theQuestion ={"userId":userId,"the question":Question, "date":iso_date}
     rec_id = collection.insert_one(theQuestion)
     print(rec_id)
     cursor = collection.find()
@@ -72,8 +72,10 @@ def load_chat():
     lista2 = []
     questions_list = []
 
+    for x in db.users.find():
+        userId = x['_id']
     #prende le risposte
-    for row in db.answers.find():
+    for row in db.answers.find({'userId':userId}):
         lista.append({'message':row['the answer'], 'date':row['date'], 'type':'answer'})
     print(lista)
     for i in range(len(lista)):
@@ -81,7 +83,7 @@ def load_chat():
         print(answers_list)
 
     #prende le domande
-    for row in db.questions.find():
+    for row in db.questions.find({'userId':userId}):
         lista2.append({'message':row['the question'], 'date':row['date'],'type':'question'})
 
     for i in range(len(lista2)):
@@ -100,7 +102,8 @@ def user_login():
     user = req_data["user"]
     password = req_data["password"]
     _id = req_data["id"]
-    
+    usersList = []
+
     collection = db.users
     
     if user != "" and password != "":
@@ -143,9 +146,10 @@ def query(question):
     collection = db.answers
 
     for x in db.users.find():
-        _id = x['_id']
+        userId = x['_id']
     
-    theAnswer ={"_id":_id,"the answer":answer, "date":datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")}
+    theAnswer ={"userId":userId,"the answer":answer, "date":datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")}
+    
     rec_id = collection.insert_one(theAnswer)
     print(rec_id)
     cursor = collection.find()

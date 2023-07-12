@@ -159,7 +159,7 @@ function login(){
         "Content-Type":"application/json; charset=utf-8",
         method:"POST"
       }).then(response =>response.json()).then(()=>{
-        console.log(response)
+        // console.log(response)
         if(user != "" && pass != "")
       {
           console.log("ciao")
@@ -167,24 +167,4 @@ function login(){
       }}).catch(function (error) {
         console.log(error);
       })
-
-    //   $.ajax({
-    //     url: "http://localhost:4242/user-login",
-    //     type: "POST",
-    //     data: JSON.stringify(userData),
-    //     contentType: "application/json; charset=utf-8",
-    //     success: function (response) {
-    //       console.log(response);
-    //       if(user != "" && pass != "")
-    //     {
-    //         console.log("ciao")
-    //         window.location.replace('/chatbot.html')
-    //     }
-    //     },
-    //     error: function (error) {
-    //       console.log(error);
-    //     },
-    //   });
-    
-    
 }

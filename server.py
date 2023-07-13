@@ -92,7 +92,7 @@ def load_chat():
 
     return jsonify({'answers_list': answers_list, 'questions_list': questions_list }), 200
 
-@app.route('/user-login', methods=['POST'])
+@app.route('/user-login', methods=['GET','POST'])
 def user_login():
     if request.method == 'POST':
         try:
@@ -107,14 +107,22 @@ def user_login():
         collection = db.users
     
         if user != "" and password != "":
-            theUser = {"_id":_id,"nome utente":user, "password":password}
-            rec_id = collection.insert_one(theUser)
-            print(rec_id)
-            cursor = collection.find()
-            for record in cursor:
-                print(record)
+            existingUser = collection.find_one({"nome utente": user})
+            if existingUser:
+                passExists = collection.find_one({"password":password})
+                if passExists:
+                    return jsonify({'user': user}), 200
+                else:
+                    return render_template('login.html')
+            else:
+                theUser = {"_id":_id,"nome utente":user, "password":password}
+                rec_id = collection.insert_one(theUser)
+                print(rec_id)
+                cursor = collection.find()
+                for record in cursor:
+                    print(record)
     
-    return jsonify({'_id': _id}), 200
+    return jsonify({'user': user}), 200
 
 #restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:

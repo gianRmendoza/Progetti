@@ -9,24 +9,6 @@ document.getElementById("close").onclick = function (e) {
 };
 
 window.onload = function () {
-  // let array = [];
-  // // var element = localStorage.getItem("text");
-  // // array.push(element);
-  // // console.log(array);
-  // for (element of array)
-  // {
-  //     let newElement = document.createElement('div');
-  //     newElement.innerText = element;
-  //     newElement.classList.add("message", "messageFrom");
-  //     document.getElementById("chatContent").appendChild(newElement);
-  // }
-
-  // fetch('http://localhost:4242/saved-chat').then(response=>{
-  //     console.log(response)
-  //     return response.json()
-  // }).then(response=>{
-  //     console.log(response)})
-
   $.ajax({
     url: "http://localhost:4242/saved-chat",
     type: "GET",
@@ -148,11 +130,11 @@ document.getElementById("Testo").addEventListener("keyup", function (e) {
 function login(){
     const user = document.getElementById("user").value;
     const pass = document.getElementById("password").value;
-
+    
     const userData = {        
         id:(Math.random() + 1).toString(36).substring(5),
-        user:user,
-        password:pass
+        user:user.trim(),
+        password:pass.trim()
       };
       console.log("userData", userData);
       fetch("http://localhost:4242/user-login",{
@@ -160,11 +142,15 @@ function login(){
         "Content-Type":"application/json; charset=utf-8",
         method:"POST"
       }).then(response =>response.json()).then(()=>{
-        // console.log(response)
+        // window.location.replace('/login.html');
+        // const pass_incorrect = document.getElementById("incorrect_pass").value;
+        // pass_incorrect.classList.remove("hidden");
         if(user != "" && pass != "")
-      {
-          window.location.replace('/chatbot.html')
-      }}).catch(function (error) {
+        {
+          window.location.replace('/chatbot.html');
+        }
+        // console.log(response)
+        }).catch(function (error) {
         console.log(error);
       })
 }

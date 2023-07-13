@@ -94,24 +94,25 @@ def load_chat():
 
 @app.route('/user-login', methods=['POST'])
 def user_login():
-    try:
-        req_data = json.loads(request.data)
-    except:
-        return jsonify({'error': "The provided input is not a JSON"}), 400
+    if request.method == 'POST':
+        try:
+            req_data = json.loads(request.data)
+        except:
+            return jsonify({'error': "The provided input is not a JSON"}), 400
 
-    user = req_data["user"]
-    password = req_data["password"]
-    _id = req_data["id"]
+        user = req_data["user"]
+        password = req_data["password"]
+        _id = req_data["id"]
 
-    collection = db.users
+        collection = db.users
     
-    if user != "" and password != "":
-        theUser = {"_id":_id,"nome utente":user, "password":password}
-        rec_id = collection.insert_one(theUser)
-        print(rec_id)
-        cursor = collection.find()
-        for record in cursor:
-            print(record)
+        if user != "" and password != "":
+            theUser = {"_id":_id,"nome utente":user, "password":password}
+            rec_id = collection.insert_one(theUser)
+            print(rec_id)
+            cursor = collection.find()
+            for record in cursor:
+                print(record)
     
     return jsonify({'_id': _id}), 200
 

@@ -103,26 +103,29 @@ def user_login():
         user = req_data["user"]
         password = req_data["password"]
         _id = req_data["id"]
+        theUser = {"_id":_id,"nome utente":user, "password":password}
 
         collection = db.users
     
         if user != "" and password != "":
-            existingUser = collection.find_one({"nome utente": user})
-            if existingUser:
-                passExists = collection.find_one({"password":password})
-                if passExists:
-                    return jsonify({'user': user}), 200
+            if len(password)>=3:
+                existingUser = collection.find_one({"nome utente": user})
+                if existingUser:
+                    passExists = collection.find_one({"password":password})
+                    if passExists:
+                        return jsonify({'user': user}), 200
+                    else:
+                        return render_template('login.html')
                 else:
-                    return render_template('login.html')
+                    rec_id = collection.insert_one(theUser)
+                    print(rec_id)
+                    cursor = collection.find()
+                    for record in cursor:
+                        print(record)
             else:
-                theUser = {"_id":_id,"nome utente":user, "password":password}
-                rec_id = collection.insert_one(theUser)
-                print(rec_id)
-                cursor = collection.find()
-                for record in cursor:
-                    print(record)
+                return render_template('login.html')
     
-    return jsonify({'user': user}), 200
+    return jsonify({'theUser': theUser}), 200
 
 #restituisce la risposta della domanda
 def chatbot_answer_question(question: str) -> str:

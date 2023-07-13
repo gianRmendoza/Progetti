@@ -293,3 +293,10 @@ text
   .login button{
     width: 100px;
   }
+  #incorrect_pass{
+    color:red;
+    font-size: 15px;
+  }
+  #incorrect_pass.hidden{
+    visibility: hidden;
+  }

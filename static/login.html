@@ -8,9 +8,9 @@
   <body>
     <div class="login">
       <b><p>User:</p></b>
-      <input id="user" placeholder="Enter User" required></textarea>
+      <input id="user" placeholder="Enter User" required></input>
       <b><p>Password:</p></b>
-      <input id="password" placeholder="Enter Password" required></textarea>
+      <input id="password" placeholder="Enter Password" required minlength="3"></input>
       <p class="hidden" id="incorrect_pass">*Password is incorrect</p>
       <br />
       <button type="submit" id="submit" onclick="login()">SUBMIT</button>

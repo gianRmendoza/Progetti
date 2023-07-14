@@ -1,4 +1,7 @@
 function openPopUp(pop) {
+  const popupOpen = document.querySelector("#popupOpen");
+  popupOpen.volume = 0.5;
+  popupOpen.play();
   document.getElementById("pop").style.display = "block";
   document.getElementById("Testo").focus();
   scrollToEnd();

@@ -52,7 +52,7 @@ def answer_question():
 
     collection = db.questions
     Question = list(question.split("/n"))
-
+    
     for x in db.users.find():
         userId = x['_id']
     
@@ -108,7 +108,7 @@ def user_login():
         collection = db.users
     
         if user != "" and password != "":
-            if len(password)>=3:
+            if len(password)>=8:
                 existingUser = collection.find_one({"nome utente": user})
                 if existingUser:
                     passExists = collection.find_one({"password":password})

@@ -175,6 +175,18 @@ function logout(){
   window.location.replace('/login.html');
 }
 
+function showPass(){
+  let pass = document.getElementById("password");
+  let btn = document.getElementById("showPass");
+  if (pass.type === "password") {
+    pass.type = "text";
+    btn.innerHTML = "Hide";
+  } else {
+    pass.type = "password";
+    btn.innerHTML = "Show";
+  }
+}
+
 // const ciao = "ciao";
 // const gian = "Gian";
 // const hello = `${ciao} ${gian}`;

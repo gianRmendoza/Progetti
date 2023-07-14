@@ -1,6 +1,7 @@
 body
 {
     background-color: darkcyan;
+    --primaryColor:#00cfe6;
 }
 h1
 {
@@ -40,7 +41,7 @@ text
     position: absolute;
     top:500px;
     left:1100px;
-    background-color:rgb(0, 123, 255);
+    background-color:var(--primaryColor);
     color:white;
     border:none;
     border-radius: 100px;
@@ -51,7 +52,7 @@ text
 }
 .button:hover
 {
-    background-color:aqua;
+    background-color:#00b8c1;
     color:white;
     transition: 0.8s;
 }
@@ -150,7 +151,7 @@ text
 .startMessage
 {
     text-align: left;
-    background:rgb(211, 110, 255);
+    background:#0f56ea;
     align-self: flex-start;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 20px;
@@ -172,7 +173,7 @@ text
 }
 .messageFrom{
     text-align: right;
-    background: royalblue;
+    background: #49a7ef;
     align-self: flex-end;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 20px;
@@ -184,7 +185,7 @@ text
 }
 .messageTo{
     text-align: left;
-    background:rgb(211, 110, 255);
+    background:#0f56ea;
     align-self: flex-start;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 20px;
@@ -197,7 +198,7 @@ text
 .messageLoading
 {
     text-align: left;
-    background:rgb(211, 110, 255);
+    background:#0f56ea;
     align-self: flex-start;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 20px;
@@ -242,7 +243,7 @@ text
     right: 10px;
     color: #fff;
     border: none;
-    background:rgb(0, 123, 255);
+    background:#0d77c8;
     font-size: 10px;
     text-transform: uppercase;
     line-height: 1;
@@ -284,14 +285,23 @@ text
     color: azure
   }
   .login{
+    padding: 10px 0;
+    position:absolute;
     text-align: center;
+    box-shadow: 0 12px 50px -10px;
+    border-radius: 40px;
+    width: 400px; 
+    height: 380px;
+    background-color: #00c9d4;
+    left: 450px;
+    top: 100px;
   }
   .login input{
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
     height: 20px;
     width: 200px
-  }
-  .login button{
-    width: 100px;
   }
   #pass_condition{
     color:red;
@@ -311,7 +321,7 @@ text
   #logout{
     color: #fff;
     border: none;
-    background:rgb(0, 123, 255);
+    background:var(--primaryColor);
     font-size: 10px;
     text-transform: uppercase;
     line-height: 1;
@@ -321,26 +331,29 @@ text
     transition: all 0.8s;
   }
   #logout:hover{
-    background-color:aqua;
+    background-color:#00b8c1;
     color:white;
     transition: 0.8s;
   }
   .login button{
-    background-color:rgb(0, 123, 255);
+    background-color:#00a3b5;
     color:white;
     border:none;
     border-radius: 100px;
-    height:40px;
-    width: 80px;
+    padding: 10px;
     transition: all 0.8s;
     cursor: pointer;
   }
   .login button:hover{
-    background-color:aqua;
+    background-color:#00c9d4;
     color:white;
     transition: 0.8s;
   }
   #warning{
     color:yellow;
     font-size: 13px;
+  }
+  .login p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
   }

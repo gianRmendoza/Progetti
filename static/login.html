@@ -7,13 +7,22 @@
   </head>
   <body>
     <div class="login">
-      <b><p>User:</p></b>
-      <input id="user" placeholder="Enter User" required></input>
+      <b><p>Username:</p></b>
+      <input id="user" placeholder="Enter Username" required></input>
       <b><p>Password:</p></b>
+      
       <input id="password" placeholder="Enter Password" required minlength="3"></input>
-      <p class="hidden" id="incorrect_pass">*Password is incorrect</p>
+      <p id="pass_condition"><b>*Password must have 8 or more characters</b></p>
+      <p id="warning">
+        *WARNING:The first time you enter your Username<br>
+        and Password would be a registration.<br>
+        The next time you login you have to pay<br>
+        attention to the password!<br>
+      </p>
       <br />
-      <button type="submit" id="submit" onclick="login()">SUBMIT</button>
+      <button type="submit" id="submit" onclick="login()">
+        <font face="Verdana"><b>SUBMIT</b></font>
+      </button>
     </div>
     <script src="app.js"></script>
   </body>

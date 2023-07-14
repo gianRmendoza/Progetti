@@ -59,15 +59,24 @@ function sendMessage() {
   newElement.classList.add("message", "messageFrom");
   document.getElementById("chatContent").appendChild(newElement); //inserisce il "figlio"(newElement) all'interno della "madre"(chat)
 
+  //sound effect all'invio del messaggio
+  const sendAudio = document.querySelector("#sendedMessage");
+  sendAudio.volume = 0.3;
+  sendAudio.play();
+
   // svuoto il campo di testo
   let value = document.getElementById("Testo").value;
   console.log("value", value);
   document.getElementById("Testo").value = "";
 
   //Chiama una funzione che restituisce un messaggio di attesa
+  const loadingAudio = document.querySelector("#loadingMessage");
   setTimeout(function () {
     console.log("run");
     loadingMessage();
+    
+    loadingAudio.volume = 0.3;
+    loadingAudio.play();
   }, 500);
   //Chiamare una nuova funzione da creare che restituisce un messaggio dopo 2 secondi che andrà in messageTo
   //Chiama il backend e manda gli la domanda(question) e restituisce una risposta (es: fake answer)
@@ -87,7 +96,10 @@ function sendMessage() {
         let newElement = document.createElement("div");
         newElement.innerText = response.answer;
         newElement.classList.add("message", "messageTo");
-        document.getElementById("chatContent").appendChild(newElement),
+        document.getElementById("chatContent").appendChild(newElement);
+        const receiveAudio = document.querySelector("#receivedMessage");
+        receiveAudio.volume = 0.3;
+        receiveAudio.play();
           scrollToEnd();
       },
       error: function (error) {
@@ -95,7 +107,8 @@ function sendMessage() {
       },
     });
     document.getElementById("loading").remove();
-  }, 2000);
+    loadingAudio.pause();
+  }, 4000);
   scrollToEnd();
 }
 
@@ -158,3 +171,7 @@ function login(){
 function logout(){
   window.location.replace('/login.html');
 }
+
+// const ciao = "ciao";
+// const gian = "Gian";
+// const hello = `${ciao} ${gian}`;

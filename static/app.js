@@ -71,14 +71,10 @@ function sendMessage() {
   }, 500);
   //Chiamare una nuova funzione da creare che restituisce un messaggio dopo 2 secondi che andrà in messageTo
   //Chiama il backend e manda gli la domanda(question) e restituisce una risposta (es: fake answer)
-  const user = document.getElementById("user").value;
-  const pass = document.getElementById("password").value;
   setTimeout(function () {
     console.log("run");
     const data = {
-      question: value,
-      user:user,
-      pass:pass
+      question: value
     };
     console.log("data", data);
     $.ajax({
@@ -157,4 +153,8 @@ function login(){
         }).catch(function (error) {
         console.log(error);
       })
+}
+
+function logout(){
+  window.location.replace('/login.html');
 }
